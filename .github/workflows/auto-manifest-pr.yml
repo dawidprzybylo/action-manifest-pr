@@ -19,8 +19,8 @@ on:
 
 env:
   GH_TOKEN: ${{ secrets.NB_TOKEN }}
-  TARGET_REPO: nrfconnect/sdk-nrf-testing
-  FORKED_REPO: nordicbuilder/sdk-nrf-testing
+  TARGET_REPO: nrfconnect/sdk-nrf
+  FORKED_REPO: nordicbuilder/sdk-nrf
 
 jobs:
   stop_if_external:
@@ -58,8 +58,7 @@ jobs:
           git config --global user.name "Nordic Builder"
       - name: Change west.yml PR revision
         run: |
-          # PROJECT_KEY=$(yq --exit-status '.manifest.projects[] | select(.repo-path == "${{ github.event.repository.name }}") |  key' west.yml)
-          PROJECT_KEY=$(yq --exit-status '.manifest.projects[] | select(.repo-path == "sdk-nrfxlib") |  key' west.yml)
+          PROJECT_KEY=$(yq --exit-status '.manifest.projects[] | select(.repo-path == "${{ github.event.repository.name }}") |  key' west.yml)
           yq ".manifest.projects[$PROJECT_KEY].revision = \"pull/${{ github.event.pull_request.number }}/head\"" west.yml > tmp.yml
           diff -B west.yml tmp.yml | patch west.yml -
       - name: Change west.yml Dragoon revision
