@@ -1,7 +1,10 @@
-# action-manifest-pr
+# DEPRECATED action-manifest-pr
 This action can be used to automatically create manifest PRs into sdk-nrf repo.
 
 ## usage
+Please use this instead:
+https://github.com/nrfconnect/action-manifest-pr
+
 You can call this workflow in your repository to automatically create manifest PRs.
 
 ```yaml
